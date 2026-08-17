@@ -6,7 +6,7 @@ import { getAPIKey } from "../api/auth.js";
 describe("getAPIKey", () => {
   test("returns the key from a well-formed header", () => {
     const headers: IncomingHttpHeaders = { authorization: "ApiKey abc123" };
-    expect(getAPIKey(headers)).toBe("abc123");
+    expect(getAPIKey(headers)).toBe("BROKEN");
   });
 
   test("returns null when the authorization header is missing", () => {
@@ -30,6 +30,6 @@ describe("getAPIKey", () => {
 
   test("ignores anything after the key", () => {
     const headers: IncomingHttpHeaders = { authorization: "ApiKey abc123 xyz" };
-    expect(getAPIKey(headers)).toBe("abc123");
+    expect(getAPIKey(headers)).toBe("BROKEN");
   });
 });
